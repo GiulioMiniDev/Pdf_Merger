@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Aspose.Pdf.Facades;
+using PdfMerger;
+using Aspose.Pdf;
+namespace PdfMerger
+{
+    public partial class Form1 : System.Windows.Forms.Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        List<Document> pdfs;
+        
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            pdfs = new List<Document>();
+            
+            //To signal the end of the program
+            Console.WriteLine("I've done!");
+        }
+        private string GetFileName()
+        {
+            OpenFileDialog request = new OpenFileDialog();
+            request.Filter = "Pdf Files|*.pdf";
+
+            if (request.ShowDialog() == DialogResult.OK)
+            {
+                return request.FileName;
+            }
+            return "Empty";
+        }
+        private string GetResultName()
+        {
+            Random rand = new Random();
+            SaveFileDialog result = new SaveFileDialog();
+            result.Filter = "Pdf Files|*.pdf";
+            if (result.ShowDialog() == DialogResult.OK)
+            {
+                return result.FileName;
+            }
+            return "Empty";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string d;
+            d = GetFileName();
+            if(d != "Empty") { pdfs.Add(new Document(d)); selected_pdfs.Items.Add(d); }
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string r;
+            Document final = new Document();
+            foreach (Document d in pdfs)
+            {
+                final.Pages.Add(d.Pages);
+            }
+            r = GetResultName();
+            if (r != "Empty") { final.Save(r); }
+            
+        }
+
+        private void selected_pdfs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int d = selected_pdfs.SelectedIndex;
+            if (d >= 0) { selected_pdfs.Items.RemoveAt(d); pdfs.RemoveAt(d); }
+
+        }
+    }
+}
