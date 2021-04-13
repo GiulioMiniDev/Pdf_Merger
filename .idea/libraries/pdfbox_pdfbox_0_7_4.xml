@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="pdfbox:pdfbox:0.7.4" type="repository">
+    <properties maven-id="pdfbox:pdfbox:0.7.4" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/pdfbox-0.7.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/fontbox-0.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/bcmail-jdk14-132.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/bcprov-jdk14-132.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
